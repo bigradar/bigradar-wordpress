@@ -25,7 +25,7 @@ With BigRadar, you can know who is right now on your website, you can start havi
 **Chatbot**
 Ask visitors personalized questions to qualify the leads and capture information
 
-**Brower Targetting**
+**Browser Targetting**
 Target visitors like if they are on `/shoes` page, send message `This shoe will look really nice on you, We can deliver this tomorrow.`
 
 **Special Messages**
