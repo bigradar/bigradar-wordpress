@@ -47,12 +47,14 @@ class BigRadarSettings {
     public function add_plugin_page()
     {
         // This page will be under "Settings"
-        add_options_page(
+        add_menu_page(
             'BigRadar Settings', 
-            'BigRadar', 
+            'BigRadar Chat', 
             'manage_options', 
             'bigradar-setting', 
-            array( $this, 'create_admin_page' )
+            array( $this, 'create_admin_page' ),
+            'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MC43IDQ4LjA4Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzJmODBlYTt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmJpZ3JhZGFyPC90aXRsZT48cGF0aCBpZD0iX0NvbXBvdW5kX1BhdGhfIiBkYXRhLW5hbWU9IiZsdDtDb21wb3VuZCBQYXRoJmd0OyIgY2xhc3M9ImNscy0xIiBkPSJNMjI2Ni4wOC0zNDkuNTVjLTE0LDAtMjUuMzUsMTAuMTgtMjUuMzUsMjIuNzNhMjEsMjEsMCwwLDAsNC4xOSwxMi41MmMtMC4zNSw0LjE0LTEuMzUsMTAtNC4xOSwxMi44MywwLDAsOC42OS0xLjIyLDE0LjU4LTQuNzhhMjcuNjcsMjcuNjcsMCwwLDAsMTAuNzcsMi4xNWMxNCwwLDI1LjM1LTEwLjE3LDI1LjM1LTIyLjcyUzIyODAuMDgtMzQ5LjU1LDIyNjYuMDgtMzQ5LjU1Wm0tNi44NCwzMy40NGEyLjU3LDIuNTcsMCwwLDEtMi41Ni0yLjU2LDIuNTcsMi41NywwLDAsMSwyLjU2LTIuNTYsMi41NywyLjU3LDAsMCwxLDIuNTYsMi41NkEyLjU3LDIuNTcsMCwwLDEsMjI1OS4yNC0zMTYuMTJabTguMTItMS4yOGExLjI4LDEuMjgsMCwwLDEtMS4yOC0xLjI4LDYuODQsNi44NCwwLDAsMC02Ljg0LTYuODQsMS4yOCwxLjI4LDAsMCwxLTEuMjgtMS4yOCwxLjI4LDEuMjgsMCwwLDEsMS4yOC0xLjI4LDkuMzQsOS4zNCwwLDAsMSw2LjY1LDIuNzUsOS4zNCw5LjM0LDAsMCwxLDIuNzUsNi42NUExLjI4LDEuMjgsMCwwLDEsMjI2Ny4zNi0zMTcuNFptNi44NCwwYTEuMjgsMS4yOCwwLDAsMS0xLjI4LTEuMjgsMTMuNjksMTMuNjksMCwwLDAtMTMuNjctMTMuNjcsMS4yOCwxLjI4LDAsMCwxLTEuMjgtMS4yOCwxLjI4LDEuMjgsMCwwLDEsMS4yOC0xLjI4LDE2LjEzLDE2LjEzLDAsMCwxLDYuMzIsMS4yOCwxNi4xOCwxNi4xOCwwLDAsMSw1LjE2LDMuNDgsMTYuMTgsMTYuMTgsMCwwLDEsMy40OCw1LjE2LDE2LjEzLDE2LjEzLDAsMCwxLDEuMjgsNi4zMkExLjI4LDEuMjgsMCwwLDEsMjI3NC4yLTMxNy40WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyNDAuNzMgMzQ5LjU1KSIvPjwvc3ZnPg==',
+            20
         );
     }
 
@@ -64,7 +66,7 @@ class BigRadarSettings {
         // Set class property
         ?>
         <div class="wrap">
-            <h1>BigRadar Settings</h1>
+            <h1>BigRadar - Live Chat Settings</h1>
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -89,14 +91,14 @@ class BigRadarSettings {
 
         add_settings_section(
             'setting_section_id', // ID
-            'Widget Integration', // Title
+            'Start getting messages from your visitors. ', // Title
             array( $this, 'print_section_info' ), // Callback
             'my-setting-admin' // Page
         );  
 
         add_settings_field(
             'app_id', 
-            'App Id', 
+            'App ID', 
             array( $this, 'title_callback' ), 
             'my-setting-admin', 
             'setting_section_id'
@@ -108,16 +110,22 @@ class BigRadarSettings {
      */
     public function print_section_info()
     {
-        print 'Enter your settings below:';
+        print 'Please follow the instructions carefully';
+        ?>
+        <p>Setting up the chatbot is really easy on your website. Just drop your email and click on get started</p>
+        <form method="post" action="https://app.bigradar.io/register">
+            <input type="text" placeholder="Official Email" name="email">
+            <button type="submit" class="button button-primary">Get Started</button>
+        </form>
+        <?php
     }
-
     /** 
      * Get the settings option array and print one of its values
      */
     public function title_callback()
     {
         printf(
-            '<input type="text" id="title" name="bigradar[app_id]" value="%s" placeholder="App ID" />',
+            '<input type="text" readonly id="title" name="bigradar[app_id]" value="%s" placeholder="App ID" />',
             $this->options['app_id']
         );
     }
