@@ -86,7 +86,7 @@ class BigRadarSettings {
     {        
         register_setting(
             'bigradar', // Option group
-            'bigradar', // Option name
+            'bigradar' // Option name
         );
 
         add_settings_section(
@@ -110,13 +110,33 @@ class BigRadarSettings {
      */
     public function print_section_info()
     {
-        print 'Please follow the instructions carefully';
+        print 'Step by step guide to setup BigRadar Live Chat on your website';
         ?>
-        <p>Setting up the chatbot is really easy on your website. Just drop your email and click on get started</p>
-        <form method="post" action="https://app.bigradar.io/register">
+        <ul>
+            <li>Step 1: <a href="https://app.bigradar.io/register" target="bigradar">Create your account on BigRadar</a></li>
+            <li>Step 2: Complete the signup process as per instruction on the screen.</a></li>
+            <li>Step 3: Copy the App ID from Settings > Project and paste in the below field.</a></li>
+        </ul>
+        <!-- <form method="post" action="https://app.bigradar.io/register">
             <input type="text" placeholder="Official Email" name="email">
             <button type="submit" class="button button-primary">Get Started</button>
-        </form>
+        </form> -->
+        <!-- BigRadar --><script type="text/javascript">(function(d,c) {
+            var b = d.body.appendChild(d.createElement('div')),
+                f=b.appendChild(d.createElement('iframe'));
+                b.style.display='none';f.src="";
+            f.onload = function() {
+                var fw=f.contentWindow,
+                fd=f.contentDocument,
+                s=fd.body.appendChild(fd.createElement('script'));
+                fw.widget={frame:f,container:b,config:c};s.src='https://app.bigradar.io/widget.js';
+            };
+            return b;
+        })(document, {
+            app_id: 'zjjhckicHgwrgWJ3rI2bGWxI',
+            // name: '<name>',
+            // email: '<email>',
+        });</script><!-- End BigRadar -->
         <?php
     }
     /** 
@@ -125,7 +145,7 @@ class BigRadarSettings {
     public function title_callback()
     {
         printf(
-            '<input type="text" readonly id="title" name="bigradar[app_id]" value="%s" placeholder="App ID" />',
+            '<input type="text" id="title" name="bigradar[app_id]" value="%s" placeholder="App ID" />',
             $this->options['app_id']
         );
     }
